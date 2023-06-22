@@ -45,7 +45,7 @@ void LRUCache::put(int key, int value)
     }
 
     list.emplace_front(key, value);
-    cache.insert({key, begin(list)});
+    cache[key] = begin(list);
 }
 
 int LRUCache::get(int key)

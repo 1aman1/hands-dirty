@@ -7,7 +7,6 @@ class Solution
 public:
     string minWindow(string str, string pattern)
     {
-
         vector<int> cache(128);
         int requiredCharCount = pattern.length();
         int strSize = str.length();
