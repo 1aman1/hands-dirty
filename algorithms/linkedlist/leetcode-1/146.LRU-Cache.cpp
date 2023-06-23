@@ -2,20 +2,19 @@
 #include <list>
 #include <unordered_map>
 
-struct Node
+struct kvNode
 {
     int key;
     int value;
 
-    Node(int Key, int Value) : key(Key), value(Value) {}
+    kvNode(int Key, int Value) : key(Key), value(Value) {}
 };
 
 class LRUCache
 {
+    std::list<kvNode> list; // hold K-V pairs
+    std::unordered_map<int, std::list<kvNode>::iterator> cache;
     size_t capacity;
-
-    std::list<Node> list; // hold K-V pairs
-    std::unordered_map<int, std::list<Node>::iterator> cache;
 
 public:
     LRUCache(int capacity) : capacity(capacity) {}
@@ -34,6 +33,7 @@ void LRUCache::put(int key, int value)
         const auto &cacheItrToKey = cache.at(key);
         list.splice(begin(list), list, cacheItrToKey);
         cacheItrToKey->value = value;
+
         return;
     }
 
@@ -51,7 +51,9 @@ void LRUCache::put(int key, int value)
 int LRUCache::get(int key)
 {
     if (!cache.count(key))
+    {
         return -1;
+    }
 
     const auto &cacheItrToKey = cache.at(key);
     list.splice(begin(list), list, cacheItrToKey);
