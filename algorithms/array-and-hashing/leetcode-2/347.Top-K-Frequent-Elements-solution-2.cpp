@@ -1,50 +1,33 @@
 #include <iostream>
 #include <vector>
-#include <unordered_map>
+#include <map>
 #include <algorithm>
-#include <queue>
 
-using namespace std;
-
-struct numMeta
-{
-    int num;
-    int freq;
-
-    numMeta(int num, int freq) : num(num), freq(freq) {}
-};
+#define INTMIN -99999
 
 class Solution
 {
 public:
     std::vector<int> topKFrequent(std::vector<int> &nums, int k)
     {
-        auto custom_compare = [](const numMeta &a, const numMeta &b)
-        { return a.freq > b.freq; };
+        std::vector<int> result;
 
-        priority_queue<numMeta, vector<numMeta>, decltype(custom_compare)> minHeap(custom_compare);
-
-        unordered_map<int, int> numberToFreq;
-        for (const int num : nums)
-        {
-            if (numberToFreq.find(num) == numberToFreq.end())
-                numberToFreq.insert({num, 1});
-            else
-                ++numberToFreq[num];
+        for (long unsigned int i = 0; i < nums.size(); ++i)
+        { // mark frequency for each
+            ++result[nums[i]];
         }
 
-        for (const auto &[num, freq] : numberToFreq)
+        for (int i = 0; i < k; ++i)
         {
-            minHeap.emplace(num, freq);
-            if (minHeap.size() > k)
-                minHeap.pop();
+            // itr to ptr
+            auto maxItr = std::max_element(result.begin(), result.end());
+
+            // item itself
+            int item = std::distance(maxItr, result.begin());
+            std::cout << " item: " << item;
+            result.push_back(item);
+            *maxItr = INTMIN;
         }
-
-        numberToFreq.clear();
-
-        vector<int> result;
-        while (!minHeap.empty())
-            result.insert(result.begin(), minHeap.top().num), minHeap.pop();
 
         return result;
     }
