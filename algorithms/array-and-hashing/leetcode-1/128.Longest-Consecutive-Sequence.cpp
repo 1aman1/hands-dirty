@@ -1,23 +1,31 @@
-
 class Solution
 {
 public:
-    int longestConsecutive(vector<int> &nums)
+    bool isPalindrome(string s)
     {
-        std::unordered_set<int> cache(begin(nums), end(nums));
-        int longestSequenceLength = -1;
+        int left = 0, right = s.size() - 1;
 
-        for (const auto &eachNum : nums)
+        while (left < right)
         {
-            if (!cache.count(eachNum - 1)) // if prev doesn't exist
-            {
-                int length = 1;
-                while (cache.count(eachNum + length))
-                    ++length;
+            while (!std::isalnum(s[left]) && left < right)
+                ++left;
 
-                longestSequenceLength = std::max(length, longestSequenceLength);
-            }
+            while (!std::isalnum(s[right]) && left < right)
+                --right;
+
+            if (isupper(s[left]))
+                s[left] = tolower(s[left]);
+
+            if (isupper(s[right]))
+                s[right] = tolower(s[right]);
+
+            if (s[left] != s[right])
+                return false;
+
+            ++left;
+            --right;
         }
-        return longestSequenceLength;
+
+        return true;
     }
 };

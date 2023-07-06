@@ -47,7 +47,6 @@ class Solution
     }
 
 public:
-
     bool isValidSudoku(const vector<vector<char>> &board)
     {
         for (int r = 0; r < ROW; ++r)
