@@ -1,12 +1,10 @@
 # code-road
 
-<img src='https://github.com/1aman1/hands-dirty/blob/mastercodebase/utils/git%20sketches.png'>
-
+<img src='https://github.com/1aman1/hands-dirty/blob/masterCodeBase/utils/git%20sketches.png'>
 
 ***
 
-One stop place to revive coding basics.
-One stop place for retuning datastructures and algorithms.
+One stop to revive coding basics and for retuning datastructures and algorithms.
 
 A. Content Structure of each directory
    * Book Problems
