@@ -418,6 +418,7 @@ treeNode *AVLTree::_remove_utility(int data, treeNode *currNodePtr)
 
     if (currNodePtr)
         currNodePtr = balance(currNodePtr);
+
     return currNodePtr;
 }
 

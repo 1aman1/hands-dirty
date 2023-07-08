@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 class tNode
@@ -13,42 +12,37 @@ public:
   }
 };
 
-void levelOrder(tNode *pRoot)
+void heightNonRecursively(tNode *pRoot)
 {
   queue<tNode *> Q;
-
+  size_t count = 0;
   tNode *temp = NULL;
   Q.push(pRoot);
+  Q.push(NULL);
+
   while (!Q.empty())
   {
     temp = Q.front();
     Q.pop();
 
-    cout << temp->data << " ";
-
-    if (temp->left)
-      Q.push(temp->left);
-    if (temp->right)
-      Q.push(temp->right);
-  }
-  while (!Q.empty())
-    Q.pop();
-}
-
-int height(tNode *pRoot)
-{
-  int left, right;
-  if (!pRoot)
-    return 0;
-  else
-  {
-    left = height(pRoot->left);
-    right = height(pRoot->right);
-    if (left > right)
-      return 1 + left;
+    if (temp == NULL)
+    {
+      if (!Q.empty())
+        Q.push(NULL);
+      ++count; // increment level
+    }
     else
-      return 1 + right;
+    {
+      if (temp->left)
+        Q.push(temp->left);
+      if (temp->right)
+        Q.push(temp->right);
+    }
   }
+
+  while (Q.empty())
+    Q.pop();
+  cout << count << endl;
 }
 
 int main()
@@ -61,6 +55,7 @@ int main()
   tNode *newNode4 = new tNode(5);
   tNode *newNode5 = new tNode(6);
   tNode *newNode6 = new tNode(7);
+  tNode *newNode7 = new tNode(8);
 
   root->left = newNode1;
   root->right = newNode2;
@@ -68,8 +63,8 @@ int main()
   newNode1->right = newNode4;
   newNode2->left = newNode5;
   newNode2->right = newNode6;
+  newNode3->left = newNode7;
 
-  //  levelOrder( root );
-  cout << height(root) << endl;
+  heightNonRecursively(root);
   return 0;
 }
