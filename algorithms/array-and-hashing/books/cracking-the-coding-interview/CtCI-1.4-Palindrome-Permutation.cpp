@@ -13,8 +13,10 @@ bool is_permutation_a_palindrome(std::string str)
             freqOfStrCharacters[str[i] - 'a'] = !freqOfStrCharacters[str[i] - 'a'];
     }
 
-    // for odd length, one odd element and rest even elements
-    // for even length, all even elements
+    // for odd lengths, the odd count must be 1 and rest count even
+
+    // And, for even length, the frequency count must be even
+
     int oddOccurrences = 0;
     for (auto itr = freqOfStrCharacters.begin(); itr != freqOfStrCharacters.end(); ++itr)
     {

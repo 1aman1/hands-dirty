@@ -41,7 +41,7 @@ public:
 
 int main()
 {
-    std::vector<int> vec = {4, 5, 6, 7, 0, 1, 2};
+    std::vector<int> vec = {4, 5, 6, 7, 0, 1, 2, 3};
     Solution obj;
 
     std::cout << obj.search(vec, 0)

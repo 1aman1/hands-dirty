@@ -3,27 +3,30 @@
 
 class Solution
 {
-public:
-    std::vector<std::vector<int>> result;
+    std::vector<std::vector<int>> result_;
 
-    void permuteUtil(std::vector<int> &nums, int left, int right)
+    void dfs(std::vector<int> &nums, int left, int right)
     {
         if (left == right)
-            result.push_back(nums);
+        {
+            result_.push_back(nums);
+            return;
+        }
 
         for (auto i = left; i <= right; ++i)
         {
             std::swap(nums[i], nums[left]);
-            permuteUtil(nums, left + 1, right);
+            dfs(nums, left + 1, right);
             std::swap(nums[i], nums[left]);
         }
     }
 
+public:
     std::vector<std::vector<int>> permute(std::vector<int> &nums)
     {
-        permuteUtil(nums, 0, nums.size() - 1);
+        dfs(nums, 0, nums.size() - 1);
 
-        return result;
+        return result_;
     }
 };
 

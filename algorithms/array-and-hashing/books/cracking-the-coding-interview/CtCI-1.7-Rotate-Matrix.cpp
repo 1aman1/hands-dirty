@@ -4,7 +4,6 @@
 
 void printMatrix(const std::vector<std::vector<int>> &matrix)
 {
-
     for (int i = 0; i < matrix.size(); ++i)
     {
         for (int j = 0; j < matrix.at(0).size(); ++j)
@@ -70,7 +69,7 @@ int main()
         {13, 14, 15, 16}};
 
     printMatrix(matrix);
-    rotateMatrix_1(matrix);
+    // rotateMatrix_1(matrix);
     rotateMatrix_2(matrix);
     printMatrix(matrix);
 

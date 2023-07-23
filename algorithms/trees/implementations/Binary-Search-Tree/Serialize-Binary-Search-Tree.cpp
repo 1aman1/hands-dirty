@@ -219,9 +219,8 @@ public:
         encode(root->right, obj);
     }
 
-    TreeNode *deserialize(std::string data)
+    TreeNode *deserialize(std::stringstream &obj)
     {
-        std::stringstream obj(data);
         return decode(obj);
     }
 
@@ -279,8 +278,9 @@ int main()
 
     inFile.open("TreeText.txt", std::ios::in);
     ss << inFile.rdbuf();
-    std::cout << seder.serialize(seder.deserialize(ss.str()));
+    std::cout << seder.serialize(seder.deserialize(ss));
     inFile.close();
 
+    std::cout << std::endl;
     return 0;
 }

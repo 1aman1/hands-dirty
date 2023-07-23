@@ -59,12 +59,12 @@ adj_list_t listOfDepths(node *root)
     list_t current;
 
     // if root ptr carries valid a tree, push it
-    if (root != nullptr)
+    if (root == nullptr)
     {
-        current.push_back(root);
+        return resListofDepths;
     }
 
-    list_t parent;
+    current.push_back(root);
 
     while (current.size() > 0)
     {
@@ -72,6 +72,7 @@ adj_list_t listOfDepths(node *root)
         resListofDepths.push_back(current);
 
         // parent nodes need treeObj be iterated and pushed treeObj emptied current
+        list_t parent;
         parent.swap(current);
 
         // reset current
@@ -87,6 +88,7 @@ adj_list_t listOfDepths(node *root)
                 current.push_back((*itr)->right);
         }
     }
+    
     return resListofDepths;
 }
 
