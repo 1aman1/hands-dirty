@@ -1,0 +1,19 @@
+> Defined entries like classes, structures and enum classes follow a format like this:
+
+ClassName, StructureName, EnumClass
+
+> Functions and variables follow a format like this:
+
+functionName, variableName
+
+> Defined values like constants and enum values follow a format like this:
+
+CONSTANT_VALUE, ENUM_VALUE
+
+> The prefix m_ is used for class member variables like this:
+
+m_classMemberVariable
+
+> The postfix _p is used for variables that are pointers (including shared and unique pointers) like this:
+
+localPointerVariable_p, m_classPointerVariable_p
