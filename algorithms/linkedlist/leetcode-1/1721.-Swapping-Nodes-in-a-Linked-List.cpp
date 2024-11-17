@@ -1,41 +1,37 @@
-
-// Definition for singly-linked list.
-struct ListNode
-{
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-//*/
-class Solution
-{
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
 public:
-    // ListNode* swapTwo
-    ListNode *swapNodes(ListNode *head, int k)
-    {
+    ListNode* swapNodes(ListNode* head, int k) {
+        ListNode* slowPtr = head;
+        ListNode* fastPtr = head;
+        ListNode* blueFlag = nullptr;
+        ListNode* greenFlag = nullptr;
 
-        if (!head || (head && !head->next))
-        {
-            return head;
+        while( k > 1){
+            fastPtr = fastPtr->next;
+            k--;
         }
 
-        /*
-        traverse list, find ith node
-        maintain k_front_prePtr and k_front_currPtr for ith Node
-        first traversal should give length also
-        2nd traversal,
-        k_back_prePtr and k_back_currPtr for size -ith node
+        blueFlag = fastPtr;
 
-        interweave the list for getting swapped list.
-        */
-
-        ListNode *traverse = head;
-        while (traverse)
-        {
-
-            traverse = traverse->next;
-            ++length;
-
+        while(fastPtr->next != nullptr){
+            slowPtr = slowPtr->next;
+            fastPtr = fastPtr->next;
         }
+
+        greenFlag = slowPtr;
+
+        swap(blueFlag->val, greenFlag->val);
+
+        return head;
     }
 };
